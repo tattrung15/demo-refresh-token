@@ -9,6 +9,9 @@ const authenticateJwt = (req, res, next) => {
 
     jwt.verify(token, Configuration.SECRET_KEY || "", (err, user) => {
       if (err) {
+        if (err.name === "TokenExpiredError") {
+          return res.status(401).json({ message: "jwt expired" });
+        }
         return handleUnauthorized(req, res);
       }
       req.user = user;
