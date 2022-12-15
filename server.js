@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const Configuration = require("./configs/configuration");
 const connectDatabase = require("./configs/database");
 const UserModel = require("./models/user.model");
@@ -8,6 +9,7 @@ const app = express();
 const routes = require("./routes");
 const Utils = require("./utils/util");
 
+app.use(cors());
 app.use(express.json());
 app.use("/api", routes);
 
