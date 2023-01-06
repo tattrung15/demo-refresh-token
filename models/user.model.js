@@ -11,6 +11,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       requried: true,
     },
+    role: {
+      type: String,
+      requried: true,
+    },
     refreshToken: {
       type: String,
     },

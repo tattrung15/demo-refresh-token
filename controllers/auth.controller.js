@@ -24,6 +24,7 @@ const login = async (req, res) => {
     const userInfo = {
       id: user._id,
       username: user.username,
+      role: user.role,
     };
 
     const [accessToken, refreshToken] = Utils.generateTokens(userInfo);
@@ -58,6 +59,7 @@ const logout = async (req, res) => {
       user: {
         id: result._id,
         username: result.username,
+        role: result.role,
       },
     });
   } catch (e) {
@@ -91,6 +93,7 @@ const refreshToken = async (req, res) => {
     const userInfo = {
       id: user._id,
       username: user.username,
+      role: user.role,
     };
 
     const newAccessToken = Utils.generateToken(userInfo);

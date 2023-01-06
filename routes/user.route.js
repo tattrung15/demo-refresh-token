@@ -4,9 +4,15 @@ const router = express.Router();
 
 const userController = require("../controllers/user.controller");
 const authenticateJwt = require("../middlewares/auth.middleware");
+const checkRoles = require("../middlewares/role.middleware");
 
-router.get("/", userController.getUsers);
+router.get("/", authenticateJwt, userController.getUsers);
 
-router.get("/:userId", authenticateJwt, userController.getDetail);
+router.get(
+  "/:userId",
+  authenticateJwt,
+  checkRoles(["ADMIN"]),
+  userController.getDetail
+);
 
 module.exports = router;

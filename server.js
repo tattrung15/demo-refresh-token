@@ -25,6 +25,7 @@ setImmediate(async () => {
       await UserModel.create({
         username: "admin",
         password,
+        role: "ADMIN",
       });
       console.log("Admin account created");
     }
